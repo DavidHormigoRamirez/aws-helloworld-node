@@ -1,12 +1,12 @@
 const { hostname } = require('os');
 const http = require('http');
 
-const message = "<h1>Hola Mundo</h1>";
+const message = "Hola Mundo";
 const port = 8080;
 
 const server = http.createServer((req,res) => {
     res.statusCode = 200;
-    res.setHeader('Content-Type',"text/html");
+    res.setHeader('Content-Type',"text/plain");
     res.end(message);
 });
 
