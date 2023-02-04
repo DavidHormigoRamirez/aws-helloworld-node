@@ -1,3 +1,3 @@
 #!/bin/bash
-cd ~/app/release
+cd /home/ubuntu/app/release
 npm run start
