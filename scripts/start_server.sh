@@ -1,3 +1,3 @@
 #!/bin/bash
 cd /home/ubuntu/app/release
-npm start
+npm -f start
