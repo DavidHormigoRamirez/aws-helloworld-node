@@ -5,5 +5,28 @@ on:
 
 env:
   applicationfolder: /
-  AWS_REGION: ##region##
-  S3BUCKET: ##s3-bucket## 
+  AWS_REGION: us-east-1
+  S3BUCKET: webserver-setup-us-east-1-codepipeline-183224015637
+
+jobs:
+  build:
+    name: Build and Package
+    runs-on: ubuntu-20.04
+    permissions:
+      id-token: write
+  steps:
+      - uses: actions/checkout@v3
+        name: Checkout Repository
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          role-to-assume: ${{ secrets.IAMROLE_GITHUB }}
+          aws-region: ${{ env.AWS_REGION }}
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: lts/*
+      - name: Clean install
+        run: npm ci
+      - name: Verificar nopm
+        run: npm test
