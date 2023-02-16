@@ -1,0 +1,9 @@
+name: Deploy
+
+on:
+  workflow_dispatch: {}
+
+env:
+  applicationfolder: /
+  AWS_REGION: ##region##
+  S3BUCKET: ##s3-bucket## 
