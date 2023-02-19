@@ -2,8 +2,9 @@ const foo = require('./foo');
 
 test("foobar test", () => {
     // arrange and act
-    var result = foo(10)
+    let expected = 10;
+    var actual = foo(10)
     
     // assert
-    expect(result).toBe(10);
+    expect(actual).toBe(expected);
 });

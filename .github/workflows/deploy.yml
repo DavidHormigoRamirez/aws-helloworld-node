@@ -6,8 +6,7 @@ on:
     types: [completed]
 
 env:
-  AWS_REGION: us-east-1
-  S3BUCKET: webserver-setup-us-east-1-codepipeline-183224015637
+  AWS_REGION: us-east-1 
 
 jobs:
   deploy:
@@ -17,11 +16,9 @@ jobs:
     permissions:
       id-token: write
     steps:
-    - name: Checkout codigo 
-      uses: actions/checkout@v3
-
-    - name: Configure AWS Credentials
-      uses: aws-actions/configure-aws-credentials@v1
+    - uses: actions/checkout@v3
+    - name: Configurar AWS Credenciales
+      uses: aws-actions/configure-aws-credentials@v1-node16
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
