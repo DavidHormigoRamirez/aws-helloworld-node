@@ -14,9 +14,6 @@ server.listen(port, hostname, () => {
     console.log(`Servidor corriendo en http://${hostname()}:${port}/`);
 });
 
-const foo = {
-    bar: function(a) {return a;} 
-}
-module.exports = foo;
+
 
 
