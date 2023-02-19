@@ -10,23 +10,26 @@ env:
 
 jobs:
   build:
-    name: Build and Package
+    name: Build and test
     runs-on: ubuntu-20.04
     permissions:
       id-token: write
   steps:
-      - uses: actions/checkout@v3
-        name: Checkout Repository
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          role-to-assume: ${{ secrets.IAMROLE_GITHUB }}
-          aws-region: ${{ env.AWS_REGION }}
-      - name: Setup node
-        uses: actions/setup-node@v3
-        with:
-          node-version: lts/*
-      - name: Clean install
-        run: npm ci
-      - name: Verificar nopm
-        run: npm test
+    - uses: actions/checkout@v3
+      name: Checkout Repository
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
+        role-to-assume: ${{ secrets.IAMROLE_GITHUB }}
+        aws-region: ${{ env.AWS_REGION }}
+    - name: Setup node
+      uses: actions/setup-node@v3
+      with:
+        node-version: lts/*
+    - name: Clean install
+      run: npm ci
+    - name: Verificar npm
+      run: npm test
