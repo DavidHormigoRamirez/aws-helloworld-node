@@ -1,4 +1,4 @@
-const foo = require('./math.js');
+const foo = require('./foo');
 
 test("foobar test", () => {
     // arrange and act
