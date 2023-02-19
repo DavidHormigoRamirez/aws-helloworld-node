@@ -4,7 +4,6 @@ on:
   workflow_dispatch: {}
 
 env:
-  applicationfolder: app
   AWS_REGION: us-east-1
   S3BUCKET: webserver-setup-us-east-1-codepipeline-183224015637
 
