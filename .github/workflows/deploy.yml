@@ -27,14 +27,6 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
         aws-region: ${{ env.AWS_REGION }}
-
-    - name: Setup node
-      uses: actions/setup-node@v3
-      with:
-        node-version: lts/*
-
-    - name: Instalar
-      run: npm ci
-    - name: Copiar a S3
+    - name: Desplegar con codedeploy
       run: |
-        aws s3 sync . s3://${{ env.S3BUCKET}}
+        aws deploy create-deployment --application-name WebServerBootstrap --deployment-group-name production --github-location repository=${{ github.repository }},commitId=${{ github.sha }}
